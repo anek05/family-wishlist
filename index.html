@@ -309,6 +309,21 @@
 
 		</div>
 
+		<!-- CONFIRM DELETE MODAL -->
+	<dialog id="delete-modal" class="modal">
+		<div class="modal-box">
+			<h3 class="font-bold text-lg">Ta bort önskning</h3>
+			<p class="py-4">
+				Vill du ta bort
+				<span id="delete-modal-title" class="font-semibold"></span>?
+			</p>
+			<div class="modal-action">
+				<button id="delete-confirm-btn" class="btn btn-error">Ja</button>
+				<button id="delete-cancel-btn" class="btn">Nej</button>
+			</div>
+		</div>
+	</dialog>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
         import {
@@ -346,6 +361,13 @@
 
 // Globalt state: { Namn: [ { title, url }, ... ] }
 let wishesByPerson = {};
+
+	const deleteModal = document.getElementById("delete-modal");
+	const deleteModalTitle = document.getElementById("delete-modal-title");
+	const deleteConfirmBtn = document.getElementById("delete-confirm-btn");
+	const deleteCancelBtn = document.getElementById("delete-cancel-btn");
+
+	let pendingDelete = null; // { name, index }
 
 // ---- Firebase ----
 
@@ -412,11 +434,9 @@ function renderAllCards() {
             const removeBtn = document.createElement("button");
             removeBtn.className = "btn btn-xs btn-error ml-4";
             removeBtn.textContent = "✕";
-            removeBtn.onclick = async () => {
-                wishesByPerson[name].splice(index, 1);
-                renderAllCards();
-                await savePersonToFirebase(name);
-            };
+            removeBtn.onclick = () => {
+	openDeleteModal(name, index, item.title || "");
+};
 
             li.appendChild(removeBtn);
 
@@ -424,6 +444,12 @@ function renderAllCards() {
         });
     });
 }
+
+	function openDeleteModal(name, index, title) {
+		pendingDelete = { name, index };
+		deleteModalTitle.textContent = `"${title}"`;
+		deleteModal.showModal();
+	}
 
 // ---- Lägg till önskning ----
 
@@ -484,6 +510,29 @@ function wireEvents() {
         });
     });
 }
+
+	deleteConfirmBtn.addEventListener("click", async () => {
+		if (!pendingDelete) {
+			deleteModal.close();
+			return;
+		}
+
+		const { name, index } = pendingDelete;
+
+		if (wishesByPerson[name]) {
+			wishesByPerson[name].splice(index, 1);
+			renderAllCards();
+			await savePersonToFirebase(name);
+		}
+
+		pendingDelete = null;
+		deleteModal.close();
+	});
+
+	deleteCancelBtn.addEventListener("click", () => {
+		pendingDelete = null;
+		deleteModal.close();
+	});
 
 // ---- Init ----
 
