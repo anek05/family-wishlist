@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="sv" data-theme="retro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Önskelista</title>
+
+  <!-- Tailwind CDN (v3) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- daisyUI v4 (kompatibel med Tailwind CDN) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+
+  <!-- Dina egna overrides (valfritt) -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="min-h-screen bg-base-200 flex items-center justify-center">
+
+    <main class="max-w-5xl mx-auto p-6">
+		<h1 class="text-3xl font-bold text-center mb-6">
+			Familjens önskelistor 🎄
+		</h1>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+
+			<!-- Linnéa -->
+			<div class="card bg-base-100 shadow-xl" data-person="Linnéa">
+				<div class="card-body">
+					<h2 class="card-title">Linnéa</h2>
+					<p class="opacity-70">Lägg till dina önskningar här.</p>
+
+					<ul class="space-y-2 wish-list"></ul>
+
+					<div class="divider"></div>
+
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Önskning</span>
+						</label>
+						<input
+							type="text"
+							class="input input-bordered w-full wish-input"
+							placeholder="t.ex. stickade sockar"
+						/>
+					</div>
+
+					<div class="form-control mt-3">
+						<label class="label">
+							<span class="label-text">Länk (valfritt)</span>
+						</label>
+						<input
+							type="url"
+							class="input input-bordered w-full url-input"
+							placeholder="https://..."
+						/>
+					</div>
+
+					<div class="card-actions mt-4">
+						<button class="btn btn-primary w-full add-wish-btn">
+							Lägg till önskning
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Sebastian -->
+			<div class="card bg-base-100 shadow-xl" data-person="Sebastian">
+				<div class="card-body">
+					<h2 class="card-title">Sebastian</h2>
+					<p class="opacity-70">Lägg till dina önskningar här.</p>
+
+					<ul class="space-y-2 wish-list"></ul>
+
+					<div class="divider"></div>
+
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Önskning</span>
+						</label>
+						<input
+							type="text"
+							class="input input-bordered w-full wish-input"
+							placeholder="t.ex. stickade sockar"
+						/>
+					</div>
+
+					<div class="form-control mt-3">
+						<label class="label">
+							<span class="label-text">Länk (valfritt)</span>
+						</label>
+						<input
+							type="url"
+							class="input input-bordered w-full url-input"
+							placeholder="https://..."
+						/>
+					</div>
+
+					<div class="card-actions mt-4">
+						<button class="btn btn-primary w-full add-wish-btn">
+							Lägg till önskning
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Mamma -->
+			<div class="card bg-base-100 shadow-xl" data-person="Mamma">
+				<div class="card-body">
+					<h2 class="card-title">Mamma</h2>
+					<p class="opacity-70">Lägg till dina önskningar här.</p>
+
+					<ul class="space-y-2 wish-list"></ul>
+
+					<div class="divider"></div>
+
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Önskning</span>
+						</label>
+						<input
+							type="text"
+							class="input input-bordered w-full wish-input"
+							placeholder="t.ex. stickade sockar"
+						/>
+					</div>
+
+					<div class="form-control mt-3">
+						<label class="label">
+							<span class="label-text">Länk (valfritt)</span>
+						</label>
+						<input
+							type="url"
+							class="input input-bordered w-full url-input"
+							placeholder="https://..."
+						/>
+					</div>
+
+					<div class="card-actions mt-4">
+						<button class="btn btn-primary w-full add-wish-btn">
+							Lägg till önskning
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Pappa -->
+			<div class="card bg-base-100 shadow-xl" data-person="Pappa">
+				<div class="card-body">
+					<h2 class="card-title">Pappa</h2>
+					<p class="opacity-70">Lägg till dina önskningar här.</p>
+
+					<ul class="space-y-2 wish-list"></ul>
+
+					<div class="divider"></div>
+
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Önskning</span>
+						</label>
+						<input
+							type="text"
+							class="input input-bordered w-full wish-input"
+							placeholder="t.ex. stickade sockar"
+						/>
+					</div>
+
+					<div class="form-control mt-3">
+						<label class="label">
+							<span class="label-text">Länk (valfritt)</span>
+						</label>
+						<input
+							type="url"
+							class="input input-bordered w-full url-input"
+							placeholder="https://..."
+						/>
+					</div>
+
+					<div class="card-actions mt-4">
+						<button class="btn btn-primary w-full add-wish-btn">
+							Lägg till önskning
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Elsa -->
+			<div class="card bg-base-100 shadow-xl" data-person="Elsa">
+				<div class="card-body">
+					<h2 class="card-title">Elsa</h2>
+					<p class="opacity-70">Lägg till dina önskningar här.</p>
+
+					<ul class="space-y-2 wish-list"></ul>
+
+					<div class="divider"></div>
+
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Önskning</span>
+						</label>
+						<input
+							type="text"
+							class="input input-bordered w-full wish-input"
+							placeholder="t.ex. stickade sockar"
+						/>
+					</div>
+
+					<div class="form-control mt-3">
+						<label class="label">
+							<span class="label-text">Länk (valfritt)</span>
+						</label>
+						<input
+							type="url"
+							class="input input-bordered w-full url-input"
+							placeholder="https://..."
+						/>
+					</div>
+
+					<div class="card-actions mt-4">
+						<button class="btn btn-primary w-full add-wish-btn">
+							Lägg till önskning
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Mormor -->
+			<div class="card bg-base-100 shadow-xl" data-person="Mormor">
+				<div class="card-body">
+					<h2 class="card-title">Mormor</h2>
+					<p class="opacity-70">Lägg till dina önskningar här.</p>
+
+					<ul class="space-y-2 wish-list"></ul>
+
+					<div class="divider"></div>
+
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Önskning</span>
+						</label>
+						<input
+							type="text"
+							class="input input-bordered w-full wish-input"
+							placeholder="t.ex. stickade sockar"
+						/>
+					</div>
+
+					<div class="form-control mt-3">
+						<label class="label">
+							<span class="label-text">Länk (valfritt)</span>
+						</label>
+						<input
+							type="url"
+							class="input input-bordered w-full url-input"
+							placeholder="https://..."
+						/>
+					</div>
+
+					<div class="card-actions mt-4">
+						<button class="btn btn-primary w-full add-wish-btn">
+							Lägg till önskning
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Andreas -->
+			<div class="card bg-base-100 shadow-xl" data-person="Andreas">
+				<div class="card-body">
+					<h2 class="card-title">Andreas</h2>
+					<p class="opacity-70">Lägg till dina önskningar här.</p>
+
+					<ul class="space-y-2 wish-list"></ul>
+
+					<div class="divider"></div>
+
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Önskning</span>
+						</label>
+						<input
+							type="text"
+							class="input input-bordered w-full wish-input"
+							placeholder="t.ex. stickade sockar"
+						/>
+					</div>
+
+					<div class="form-control mt-3">
+						<label class="label">
+							<span class="label-text">Länk (valfritt)</span>
+						</label>
+						<input
+							type="url"
+							class="input input-bordered w-full url-input"
+							placeholder="https://..."
+						/>
+					</div>
+
+					<div class="card-actions mt-4">
+						<button class="btn btn-primary w-full add-wish-btn">
+							Lägg till önskning
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+        import {
+            getDatabase,
+            ref,
+            get,
+            set
+        } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+    
+        // TODO: Klistra in din riktiga config här från Firebase Console
+        const firebaseConfig = {
+            
+            databaseURL: "https://familj-wishlist-default-rtdb.europe-west1.firebasedatabase.app",
+
+            apiKey: "AIzaSyDaTQocrksEqv_UCURwefeEw0bvrYEQ8z4",
+
+            authDomain: "familj-wishlist.firebaseapp.com",
+
+            projectId: "familj-wishlist",
+
+            storageBucket: "familj-wishlist.firebasestorage.app",
+
+            messagingSenderId: "349921166344",
+
+            appId: "1:349921166344:web:f8111ed1aaf4f22f6abdbd"
+
+        };
+    
+        // Init Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+    
+        // Namnlista (matchar data-person i HTML)
+		const MEMBER_NAMES = ["Linnéa", "Sebastian", "Mamma", "Pappa", "Elsa", "Mormor", "Andreas"];
+
+// Globalt state: { Namn: [ { title, url }, ... ] }
+let wishesByPerson = {};
+
+// ---- Firebase ----
+
+async function loadAllFromFirebase() {
+    const wishlistRef = ref(db, "wishlists");
+    try {
+        const snap = await get(wishlistRef);
+        const data = snap.exists() ? snap.val() : {};
+
+        wishesByPerson = {};
+        MEMBER_NAMES.forEach((name) => {
+            wishesByPerson[name] = data && data[name] ? data[name] : [];
+        });
+
+        renderAllCards();
+    } catch (err) {
+        console.error("Kunde inte läsa från Firebase:", err);
+    }
+}
+
+async function savePersonToFirebase(name) {
+    const personRef = ref(db, "wishlists/" + name);
+    try {
+        await set(personRef, wishesByPerson[name] || []);
+    } catch (err) {
+        console.error("Kunde inte spara till Firebase för", name, err);
+    }
+}
+
+// ---- Rendering ----
+
+function renderAllCards() {
+    const cards = document.querySelectorAll("[data-person]");
+
+    cards.forEach((card) => {
+        const name = card.dataset.person;
+        const listEl = card.querySelector(".wish-list");
+        listEl.innerHTML = "";
+
+        const wishes = wishesByPerson[name] || [];
+
+        wishes.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.className = "p-3 rounded-lg bg-base-200 flex justify-between items-center";
+
+            const mainDiv = document.createElement("div");
+
+            const titleSpan = document.createElement("span");
+            titleSpan.className = "font-medium block";
+            titleSpan.textContent = item.title || "";
+            mainDiv.appendChild(titleSpan);
+
+            if (item.url) {
+                const linkEl = document.createElement("a");
+                linkEl.href = item.url;
+                linkEl.target = "_blank";
+                linkEl.className = "link link-primary text-sm";
+                linkEl.textContent = item.url;
+                mainDiv.appendChild(linkEl);
+            }
+
+            li.appendChild(mainDiv);
+
+            const removeBtn = document.createElement("button");
+            removeBtn.className = "btn btn-xs btn-error ml-4";
+            removeBtn.textContent = "✕";
+            removeBtn.onclick = async () => {
+                wishesByPerson[name].splice(index, 1);
+                renderAllCards();
+                await savePersonToFirebase(name);
+            };
+
+            li.appendChild(removeBtn);
+
+            listEl.appendChild(li);
+        });
+    });
+}
+
+// ---- Lägg till önskning ----
+
+async function addWishForCard(card) {
+    const name = card.dataset.person;
+    const textInput = card.querySelector(".wish-input");
+    const urlInput = card.querySelector(".url-input");
+
+    const text = textInput.value.trim();
+    const url = urlInput.value.trim();
+
+    if (!text) {
+        textInput.focus();
+        return;
+    }
+
+    if (!wishesByPerson[name]) {
+        wishesByPerson[name] = [];
+    }
+
+    wishesByPerson[name].push({
+        title: text,
+        url: url || null
+    });
+
+    textInput.value = "";
+    urlInput.value = "";
+    textInput.focus();
+
+    renderAllCards();
+    await savePersonToFirebase(name);
+}
+
+// ---- Event wiring ----
+
+function wireEvents() {
+    const cards = document.querySelectorAll("[data-person]");
+
+    cards.forEach((card) => {
+        const addBtn = card.querySelector(".add-wish-btn");
+        const textInput = card.querySelector(".wish-input");
+        const urlInput = card.querySelector(".url-input");
+
+        addBtn.addEventListener("click", () => {
+            addWishForCard(card);
+        });
+
+        textInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                addWishForCard(card);
+            }
+        });
+
+        urlInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                addWishForCard(card);
+            }
+        });
+    });
+}
+
+// ---- Init ----
+
+wireEvents();
+loadAllFromFirebase();
+    </script>
+
+</body>
+</html>
