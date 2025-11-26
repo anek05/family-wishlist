@@ -424,7 +424,7 @@ function renderAllCards() {
                 const linkEl = document.createElement("a");
                 linkEl.href = item.url;
                 linkEl.target = "_blank";
-                linkEl.className = "link link-primary text-sm";
+                linkEl.className = "link link-primary text-sm break-words break-all";
                 linkEl.textContent = item.url;
                 mainDiv.appendChild(linkEl);
             }
