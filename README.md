@@ -48,6 +48,20 @@ Testerna täcker sju listor, tillägg med/utan länk, Enter, redigering, avbrute
 
 Tester och visuell granskning i Chrome ersätter inte prov på en fysisk iPhone eller fullständig manuell WCAG-granskning. Inga sådana kontroller har genomförts.
 
+### Integrationstest med den riktiga Firebase-klienten
+
+Raderingsbuggen som rapporterades 2026-11-25 återskapades även med Firebase SDK 11.0.0 mot en lokal Realtime Database-emulator. En engångsläsning med `get()` garanterade inte att transaktionens lokala cache var fylld: den första raderingen kunde avbrytas med ett tomt resultat, vilket appen felaktigt visade som en tom lista. Testerna med en förenklad testdubbel hade inte fångat detta.
+
+Rättningen håller en tillfällig `onValue`-prenumeration öppen under sparandet och inväntar dess första data innan transaktionen startas. Prenumerationen tas bort efteråt. En avbruten transaktion följs av en uttrycklig läsning; om den läsningen misslyckas lämnas den tidigare visade listan kvar. Objekt jämförs utan att egenskapsordning eller Firebase-borttagna `null`-fält ger falska konflikter. [Firebase beskriver lyssnare och transaktioner här](https://firebase.google.com/docs/database/web/read-and-write).
+
+Integrationstestet kräver Java 17 och använder Firebase CLI 13.35.1 som separat testverktyg. Det startar en lokal emulator med **demo-projektet** `demo-wishlist-regression`, laddar den riktiga SDK:n från Googles CDN och kör appen mot testdatabasen. Testservern styr om bara den serverade testkopian av appkoden; produktionsfilen och Firebase-konfigurationen ändras inte. Kör inte kommandot mot ett verkligt projekt-ID.
+
+```powershell
+npx --yes --package firebase-tools@13.35.1 firebase emulators:exec --project demo-wishlist-regression --only database --config tests/firebase.json "npm run test:firebase"
+```
+
+Verifierat: första raderingen och redigeringen efter en ny sidladdning, ändring/radering direkt efter tillägg utan länk, bevarade extra datafält, en faktisk ändring från en annan klient, radering av sista önskningen, tillägg i en tom lista, oförändrade andra personlistor och bestående resultat efter omladdning. Det vanliga webbläsartestet kontrollerar även att en misslyckad läsning efter en konflikt inte får tömma listan på skärmen. Ingen av dessa tester läser eller skriver till familjens databas.
+
 ## Kvarstående kontroll av Firebase
 
 Vid lokal kontroll 2026-11-24 svarade den befintliga databasen med **Permission denied** vid hämtning. Gränssnittet visar därför ett tydligt fel och erbjuder återförsök; inga tomma listor går att spara över de befintliga uppgifterna. Skarpa listor och sparande har inte kunnat verifieras. Testerna av funktionerna är isolerade.

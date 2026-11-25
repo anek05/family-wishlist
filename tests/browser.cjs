@@ -22,7 +22,18 @@ export const getDatabase = () => ({});
 export const ref = (_, path) => path;
 const read = path => path === 'wishlists' ? state.data : state.data[path.slice(10)] ?? null;
 const snapshot = value => ({val: () => structuredClone(value), exists: () => value != null});
+const activePaths = new Set();
+export function onValue(path, callback, onError) {
+  activePaths.add(path);
+  state.listeners = activePaths.size;
+  queueMicrotask(() => {
+    if (state.failLoad) onError(Error('Permission denied'));
+    else callback(snapshot(read(path)));
+  });
+  return () => { activePaths.delete(path); state.listeners = activePaths.size; };
+}
 export async function get(path) {
+  if (state.failNextGet) { state.failNextGet = false; throw Error('Refresh failed'); }
   if (state.failLoad) throw Error('Permission denied');
   return snapshot(read(path));
 }
@@ -30,13 +41,21 @@ export async function runTransaction(path, update) {
   state.attempts++;
   if (state.delay) await new Promise(resolve => setTimeout(resolve, state.delay));
   if (state.failSave) throw Error('Permission denied');
+  if (!activePaths.has(path)) {
+    // A one-off get() need not warm the cache used by transactions.
+    const initial = update(null);
+    if (initial === undefined) return {committed:false, snapshot:snapshot(null)};
+  }
   const name = path.slice(10);
   if (state.concurrent) {
     state.data[name] = structuredClone(state.concurrent);
     state.concurrent = null;
   }
   const next = update(structuredClone(read(path)));
-  if (next === undefined) return {committed:false, snapshot:snapshot(read(path))};
+  if (next === undefined) {
+    if (state.failConflictRefresh) state.failNextGet = true;
+    return {committed:false, snapshot:snapshot(null)};
+  }
   state.data[name] = next;
   state.writes++;
   return {committed:true, snapshot:snapshot(next)};
@@ -328,6 +347,33 @@ async function run() {
     await page.evaluate(() => {
       window.__firebaseTest.failSave = false;
     });
+    // A failed conflict refresh must not replace a visible list with the null
+    // snapshot returned by an aborted transaction.
+    await page
+      .getByRole("button", { name: "Ta bort Flyttat krav", exact: true })
+      .click();
+    await page.evaluate(() => {
+      window.__firebaseTest.failConflictRefresh = true;
+      window.__firebaseTest.concurrent = [
+        { title: "Någon annans ändring", url: null },
+      ];
+    });
+    await page.locator("#delete-confirm").click();
+    await waitStatus("Ändringen kunde inte sparas");
+    assert.equal(
+      await page.getByText("Flyttat krav", { exact: true }).count(),
+      1,
+    );
+    assert.equal(await page.locator(".wish-title").count(), 1);
+    assert.equal(
+      await page.evaluate(() => window.__firebaseTest.writes),
+      writes + 2,
+    );
+    assert.equal(await page.evaluate(() => window.__firebaseTest.listeners), 0);
+    await page.locator("#delete-cancel").click();
+    await page.evaluate(() => {
+      window.__firebaseTest.failConflictRefresh = false;
+    });
     // Hostile legacy text is rendered as text; unsafe links never become active.
     await page.evaluate(() => {
       window.__firebaseTest.data.Elsa = [
@@ -390,7 +436,9 @@ async function run() {
       true,
     );
     await page.waitForFunction(() => {
-      const rect = document.getElementById("load-message").getBoundingClientRect();
+      const rect = document
+        .getElementById("load-message")
+        .getBoundingClientRect();
       return rect.top >= 0 && rect.bottom <= innerHeight;
     });
     await page.evaluate(() => {

@@ -43,6 +43,20 @@ function wishArray(value) {
   }
   throw new Error("Okänt listformat. Inga uppgifter har ändrats.");
 }
+function wishFingerprint(item) {
+  // Firebase omits null object properties; key order is not a data change.
+  return JSON.stringify(item, (_key, value) => {
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+      return Object.fromEntries(
+        Object.keys(value)
+          .sort()
+          .filter((key) => value[key] != null)
+          .map((key) => [key, value[key]]),
+      );
+    }
+    return value;
+  });
+}
 function safeURL(value) {
   try {
     const url = new URL(value);
@@ -178,7 +192,7 @@ function render() {
           );
           edit.addEventListener("click", () => {
             if (busy) return;
-            editing = { name, index, original: JSON.stringify(item) };
+            editing = { name, index, original: wishFingerprint(item) };
             $("wish-title").value = item.title || "";
             $("wish-url").value = item.url || "";
             $("wish-title").setCustomValidity("");
@@ -196,7 +210,7 @@ function render() {
           );
           remove.addEventListener("click", () => {
             if (busy) return;
-            pendingDelete = { name, index, original: JSON.stringify(item) };
+            pendingDelete = { name, index, original: wishFingerprint(item) };
             $("delete-title").textContent = `”${item.title || "önskningen"}”`;
             $("delete-person").textContent = name;
             $("delete-error").textContent = "";
@@ -277,17 +291,21 @@ async function saveChange(name, action, value, target) {
       ),
     12000,
   );
+  let stopListening;
   try {
     const personRef = sdk.ref(database, "wishlists/" + name);
-    // Fetch before the transaction, including for legacy lists not in the local cache.
-    await sdk.get(personRef);
+    // get() alone does not guarantee a populated transaction cache. Keep a value
+    // listener alive until the transaction finishes, and await its initial data.
+    await new Promise((resolve, reject) => {
+      stopListening = sdk.onValue(personRef, resolve, reject);
+    });
     const result = await sdk.runTransaction(
       personRef,
       (current) => {
         const wishes = wishArray(current);
         if (action === "add") wishes.push(value);
         else {
-          if (JSON.stringify(wishes[target.index]) !== target.original) return;
+          if (wishFingerprint(wishes[target.index]) !== target.original) return;
           if (action === "edit")
             wishes[target.index] = { ...wishes[target.index], ...value };
           else wishes.splice(target.index, 1);
@@ -296,9 +314,16 @@ async function saveChange(name, action, value, target) {
       },
       { applyLocally: false },
     );
+    if (!result.committed) {
+      // An aborted transaction snapshot may contain only local cache data (null).
+      // Refresh explicitly; if that fails, leave the currently visible list intact.
+      const latest = await sdk.get(personRef);
+      wishesByPerson[name] = wishArray(latest.val());
+      render();
+      throw new Error("conflict");
+    }
     wishesByPerson[name] = wishArray(result.snapshot.val());
     render();
-    if (!result.committed) throw new Error("conflict");
     return true;
   } catch (error) {
     console.error("Kunde inte spara önskningen:", error);
@@ -310,6 +335,7 @@ async function saveChange(name, action, value, target) {
     if (pendingDelete) $("delete-error").textContent = message;
     return false;
   } finally {
+    stopListening?.();
     clearTimeout(timer);
     setBusy(false);
   }

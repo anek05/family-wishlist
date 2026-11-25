@@ -5,7 +5,8 @@
   "description": "Familjens befintliga önskelisteapp, i ny parlamentarisk julskrud.",
   "scripts": {
     "check": "node --check app.js",
-    "test": "node tests/browser.cjs"
+    "test": "node tests/browser.cjs",
+    "test:firebase": "node tests/firebase-integration.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.1",

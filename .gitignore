@@ -1,2 +1,4 @@
 node_modules/
 test-results/
+firebase-debug.log*
+database-debug.log*
