@@ -1,544 +1,274 @@
-<!DOCTYPE html>
-<html lang="sv" data-theme="autumn">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Önskelista</title>
-
-  <!-- Tailwind CDN (v3) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- daisyUI v4 (kompatibel med Tailwind CDN) -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
-    rel="stylesheet"
-    type="text/css"
-  />
-
-  <!-- Dina egna overrides (valfritt) -->
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body class="min-h-screen bg-base-200 flex items-center justify-center">
-
-    <main class="max-w-5xl mx-auto p-6">
-		<h1 class="text-3xl font-bold text-center mb-6">
-			Familjens önskelistor 🎄
-		</h1>
-
-		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-start">
-
-			<!-- Linnéa -->
-			<div class="card bg-base-100 shadow-xl" data-person="Linnéa">
-				<div class="card-body">
-					<h2 class="card-title">Linnéa</h2>
-					<p class="opacity-70">Lägg till dina önskningar här.</p>
-
-					<ul class="space-y-2 wish-list"></ul>
-
-					<div class="divider"></div>
-
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text">Önskning</span>
-						</label>
-						<input
-							type="text"
-							class="input input-bordered w-full wish-input"
-							placeholder="t.ex. stickade sockar"
-						/>
-					</div>
-
-					<div class="form-control mt-3">
-						<label class="label">
-							<span class="label-text">Länk (valfritt)</span>
-						</label>
-						<input
-							type="url"
-							class="input input-bordered w-full url-input"
-							placeholder="https://..."
-						/>
-					</div>
-
-					<div class="card-actions mt-4">
-						<button class="btn btn-primary w-full add-wish-btn">
-							Lägg till önskning
-						</button>
-					</div>
-				</div>
-			</div>
-
-			<!-- Sebastian -->
-			<div class="card bg-base-100 shadow-xl" data-person="Sebastian">
-				<div class="card-body">
-					<h2 class="card-title">Sebastian</h2>
-					<p class="opacity-70">Lägg till dina önskningar här.</p>
-
-					<ul class="space-y-2 wish-list"></ul>
-
-					<div class="divider"></div>
-
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text">Önskning</span>
-						</label>
-						<input
-							type="text"
-							class="input input-bordered w-full wish-input"
-							placeholder="t.ex. stickade sockar"
-						/>
-					</div>
-
-					<div class="form-control mt-3">
-						<label class="label">
-							<span class="label-text">Länk (valfritt)</span>
-						</label>
-						<input
-							type="url"
-							class="input input-bordered w-full url-input"
-							placeholder="https://..."
-						/>
-					</div>
-
-					<div class="card-actions mt-4">
-						<button class="btn btn-primary w-full add-wish-btn">
-							Lägg till önskning
-						</button>
-					</div>
-				</div>
-			</div>
-
-			<!-- Mamma -->
-			<div class="card bg-base-100 shadow-xl" data-person="Mamma">
-				<div class="card-body">
-					<h2 class="card-title">Mamma</h2>
-					<p class="opacity-70">Lägg till dina önskningar här.</p>
-
-					<ul class="space-y-2 wish-list"></ul>
-
-					<div class="divider"></div>
-
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text">Önskning</span>
-						</label>
-						<input
-							type="text"
-							class="input input-bordered w-full wish-input"
-							placeholder="t.ex. stickade sockar"
-						/>
-					</div>
-
-					<div class="form-control mt-3">
-						<label class="label">
-							<span class="label-text">Länk (valfritt)</span>
-						</label>
-						<input
-							type="url"
-							class="input input-bordered w-full url-input"
-							placeholder="https://..."
-						/>
-					</div>
-
-					<div class="card-actions mt-4">
-						<button class="btn btn-primary w-full add-wish-btn">
-							Lägg till önskning
-						</button>
-					</div>
-				</div>
-			</div>
-
-			<!-- Pappa -->
-			<div class="card bg-base-100 shadow-xl" data-person="Pappa">
-				<div class="card-body">
-					<h2 class="card-title">Pappa</h2>
-					<p class="opacity-70">Lägg till dina önskningar här.</p>
-
-					<ul class="space-y-2 wish-list"></ul>
-
-					<div class="divider"></div>
-
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text">Önskning</span>
-						</label>
-						<input
-							type="text"
-							class="input input-bordered w-full wish-input"
-							placeholder="t.ex. stickade sockar"
-						/>
-					</div>
-
-					<div class="form-control mt-3">
-						<label class="label">
-							<span class="label-text">Länk (valfritt)</span>
-						</label>
-						<input
-							type="url"
-							class="input input-bordered w-full url-input"
-							placeholder="https://..."
-						/>
-					</div>
-
-					<div class="card-actions mt-4">
-						<button class="btn btn-primary w-full add-wish-btn">
-							Lägg till önskning
-						</button>
-					</div>
-				</div>
-			</div>
-
-			<!-- Elsa -->
-			<div class="card bg-base-100 shadow-xl" data-person="Elsa">
-				<div class="card-body">
-					<h2 class="card-title">Elsa</h2>
-					<p class="opacity-70">Lägg till dina önskningar här.</p>
-
-					<ul class="space-y-2 wish-list"></ul>
-
-					<div class="divider"></div>
-
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text">Önskning</span>
-						</label>
-						<input
-							type="text"
-							class="input input-bordered w-full wish-input"
-							placeholder="t.ex. stickade sockar"
-						/>
-					</div>
-
-					<div class="form-control mt-3">
-						<label class="label">
-							<span class="label-text">Länk (valfritt)</span>
-						</label>
-						<input
-							type="url"
-							class="input input-bordered w-full url-input"
-							placeholder="https://..."
-						/>
-					</div>
-
-					<div class="card-actions mt-4">
-						<button class="btn btn-primary w-full add-wish-btn">
-							Lägg till önskning
-						</button>
-					</div>
-				</div>
-			</div>
-
-			<!-- Mormor -->
-			<div class="card bg-base-100 shadow-xl" data-person="Mormor">
-				<div class="card-body">
-					<h2 class="card-title">Mormor</h2>
-					<p class="opacity-70">Lägg till dina önskningar här.</p>
-
-					<ul class="space-y-2 wish-list"></ul>
-
-					<div class="divider"></div>
-
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text">Önskning</span>
-						</label>
-						<input
-							type="text"
-							class="input input-bordered w-full wish-input"
-							placeholder="t.ex. stickade sockar"
-						/>
-					</div>
-
-					<div class="form-control mt-3">
-						<label class="label">
-							<span class="label-text">Länk (valfritt)</span>
-						</label>
-						<input
-							type="url"
-							class="input input-bordered w-full url-input"
-							placeholder="https://..."
-						/>
-					</div>
-
-					<div class="card-actions mt-4">
-						<button class="btn btn-primary w-full add-wish-btn">
-							Lägg till önskning
-						</button>
-					</div>
-				</div>
-			</div>
-
-			<!-- Andreas -->
-			<div class="card bg-base-100 shadow-xl" data-person="Andreas">
-				<div class="card-body">
-					<h2 class="card-title">Andreas</h2>
-					<p class="opacity-70">Lägg till dina önskningar här.</p>
-
-					<ul class="space-y-2 wish-list"></ul>
-
-					<div class="divider"></div>
-
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text">Önskning</span>
-						</label>
-						<input
-							type="text"
-							class="input input-bordered w-full wish-input"
-							placeholder="t.ex. stickade sockar"
-						/>
-					</div>
-
-					<div class="form-control mt-3">
-						<label class="label">
-							<span class="label-text">Länk (valfritt)</span>
-						</label>
-						<input
-							type="url"
-							class="input input-bordered w-full url-input"
-							placeholder="https://..."
-						/>
-					</div>
-
-					<div class="card-actions mt-4">
-						<button class="btn btn-primary w-full add-wish-btn">
-							Lägg till önskning
-						</button>
-					</div>
-				</div>
-			</div>
-
-		</div>
-
-		<!-- CONFIRM DELETE MODAL -->
-	<dialog id="delete-modal" class="modal">
-		<div class="modal-box">
-			<h3 class="font-bold text-lg">Ta bort önskning</h3>
-			<p class="py-4">
-				Vill du ta bort
-				<span id="delete-modal-title" class="font-semibold"></span>?
-			</p>
-			<div class="modal-action">
-				<button id="delete-confirm-btn" class="btn btn-error">Ja</button>
-				<button id="delete-cancel-btn" class="btn">Nej</button>
-			</div>
-		</div>
-	</dialog>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import {
-            getDatabase,
-            ref,
-            get,
-            set
-        } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
-    
-        // TODO: Klistra in din riktiga config här från Firebase Console
-        const firebaseConfig = {
-            
-            databaseURL: "https://familj-wishlist-default-rtdb.europe-west1.firebasedatabase.app",
-
-            apiKey: "AIzaSyDaTQocrksEqv_UCURwefeEw0bvrYEQ8z4",
-
-            authDomain: "familj-wishlist.firebaseapp.com",
-
-            projectId: "familj-wishlist",
-
-            storageBucket: "familj-wishlist.firebasestorage.app",
-
-            messagingSenderId: "349921166344",
-
-            appId: "1:349921166344:web:f8111ed1aaf4f22f6abdbd"
-
-        };
-    
-        // Init Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-    
-        // Namnlista (matchar data-person i HTML)
-		const MEMBER_NAMES = ["Linnéa", "Sebastian", "Mamma", "Pappa", "Elsa", "Mormor", "Andreas"];
-
-// Globalt state: { Namn: [ { title, url }, ... ] }
-let wishesByPerson = {};
-
-	const deleteModal = document.getElementById("delete-modal");
-	const deleteModalTitle = document.getElementById("delete-modal-title");
-	const deleteConfirmBtn = document.getElementById("delete-confirm-btn");
-	const deleteCancelBtn = document.getElementById("delete-cancel-btn");
-
-	let pendingDelete = null; // { name, index }
-
-// ---- Firebase ----
-
-async function loadAllFromFirebase() {
-    const wishlistRef = ref(db, "wishlists");
-    try {
-        const snap = await get(wishlistRef);
-        const data = snap.exists() ? snap.val() : {};
-
-        wishesByPerson = {};
-        MEMBER_NAMES.forEach((name) => {
-            wishesByPerson[name] = data && data[name] ? data[name] : [];
-        });
-
-        renderAllCards();
-    } catch (err) {
-        console.error("Kunde inte läsa från Firebase:", err);
-    }
-}
-
-async function savePersonToFirebase(name) {
-    const personRef = ref(db, "wishlists/" + name);
-    try {
-        await set(personRef, wishesByPerson[name] || []);
-    } catch (err) {
-        console.error("Kunde inte spara till Firebase för", name, err);
-    }
-}
-
-// ---- Rendering ----
-
-function renderAllCards() {
-    const cards = document.querySelectorAll("[data-person]");
-
-    cards.forEach((card) => {
-        const name = card.dataset.person;
-        const listEl = card.querySelector(".wish-list");
-        listEl.innerHTML = "";
-
-        const wishes = wishesByPerson[name] || [];
-
-        wishes.forEach((item, index) => {
-            const li = document.createElement("li");
-            li.className = "p-3 rounded-lg bg-base-200 flex justify-between items-center";
-
-            const mainDiv = document.createElement("div");
-
-            const titleSpan = document.createElement("span");
-            titleSpan.className = "font-medium block";
-            titleSpan.textContent = item.title || "";
-            mainDiv.appendChild(titleSpan);
-
-            if (item.url) {
-                const linkEl = document.createElement("a");
-                linkEl.href = item.url;
-                linkEl.target = "_blank";
-                linkEl.className = "link link-primary text-sm break-words break-all";
-                linkEl.textContent = item.url;
-                mainDiv.appendChild(linkEl);
-            }
-
-            li.appendChild(mainDiv);
-
-            const removeBtn = document.createElement("button");
-            removeBtn.className = "btn btn-xs btn-error ml-4";
-            removeBtn.textContent = "✕";
-            removeBtn.onclick = () => {
-	openDeleteModal(name, index, item.title || "");
-};
-
-            li.appendChild(removeBtn);
-
-            listEl.appendChild(li);
-        });
-    });
-}
-
-	function openDeleteModal(name, index, title) {
-		pendingDelete = { name, index };
-		deleteModalTitle.textContent = `"${title}"`;
-		deleteModal.showModal();
-	}
-
-// ---- Lägg till önskning ----
-
-async function addWishForCard(card) {
-    const name = card.dataset.person;
-    const textInput = card.querySelector(".wish-input");
-    const urlInput = card.querySelector(".url-input");
-
-    const text = textInput.value.trim();
-    const url = urlInput.value.trim();
-
-    if (!text) {
-        textInput.focus();
-        return;
-    }
-
-    if (!wishesByPerson[name]) {
-        wishesByPerson[name] = [];
-    }
-
-    wishesByPerson[name].push({
-        title: text,
-        url: url || null
-    });
-
-    textInput.value = "";
-    urlInput.value = "";
-    textInput.focus();
-
-    renderAllCards();
-    await savePersonToFirebase(name);
-}
-
-// ---- Event wiring ----
-
-function wireEvents() {
-    const cards = document.querySelectorAll("[data-person]");
-
-    cards.forEach((card) => {
-        const addBtn = card.querySelector(".add-wish-btn");
-        const textInput = card.querySelector(".wish-input");
-        const urlInput = card.querySelector(".url-input");
-
-        addBtn.addEventListener("click", () => {
-            addWishForCard(card);
-        });
-
-        textInput.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                addWishForCard(card);
-            }
-        });
-
-        urlInput.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                addWishForCard(card);
-            }
-        });
-    });
-}
-
-	deleteConfirmBtn.addEventListener("click", async () => {
-		if (!pendingDelete) {
-			deleteModal.close();
-			return;
-		}
-
-		const { name, index } = pendingDelete;
-
-		if (wishesByPerson[name]) {
-			wishesByPerson[name].splice(index, 1);
-			renderAllCards();
-			await savePersonToFirebase(name);
-		}
-
-		pendingDelete = null;
-		deleteModal.close();
-	});
-
-	deleteCancelBtn.addEventListener("click", () => {
-		pendingDelete = null;
-		deleteModal.close();
-	});
-
-// ---- Init ----
-
-wireEvents();
-loadAllFromFirebase();
-    </script>
-
-</body>
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#173f50" />
+    <meta
+      name="description"
+      content="Familjens julklappsförhandlingar 2026. Lägg fram dina julklappskrav och läs familjens önskelistor. För julfridens skull."
+    />
+    <meta
+      property="og:title"
+      content="Regeringsbildning.nu – för julfridens skull"
+    />
+    <meta
+      property="og:description"
+      content="Sju förhandlingsparter. En gemensam jul. Familjens önskelistor inför julen 2026."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="sv_SE" />
+    <title>Regeringsbildning.nu – familjens önskelistor 2026</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#kravlistor">Hoppa till önskelistorna</a>
+    <div class="institution-bar">
+      <div class="container">
+        <span>Familjens inofficiella julklappskansli</span
+        ><span>Riksmötet 2026 / Julen</span>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./" aria-label="Regeringsbildning.nu, startsida"
+          ><img src="favicon.svg" width="48" height="48" alt="" /><span
+            >Regeringsbildning<span class="brand-domain">.nu</span
+            ><small>För julfridens skull.</small></span
+          ></a
+        >
+        <nav aria-label="Huvudnavigation">
+          <a class="nav-active" href="#kravlistor">Familjens kravlistor</a
+          ><a href="#sa-funkar-det">Så fungerar det</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span class="status-dot" aria-hidden="true"></span>
+              Förhandlingarna inför julen 2026 är öppna
+            </p>
+            <h1 id="hero-title">
+              En regering kan vänta.<br /><em>Julfriden kan det inte.</em>
+            </h1>
+            <p class="hero-description">
+              Sju förhandlingsparter. En gemensam jul.<br />Här samlar familjen
+              sina önskelistor – formellt benämnda krav på julklappar.
+            </p>
+            <div class="hero-actions">
+              <button class="button button-gold" id="my-list">
+                Till min kravlista <span aria-hidden="true">→</span></button
+              ><button class="hero-link" id="family-lists">
+                Se familjens önskelistor <span aria-hidden="true">↓</span>
+              </button>
+            </div>
+            <p class="hero-footnote">Inga partier. Bara paket.</p>
+          </div>
+          <figure class="hero-art">
+            <img src="chamber.svg" alt="" width="440" height="330" />
+            <figcaption>JULFRIDSUTSKOTTET · SAMLAT SEDAN 2026</figcaption>
+          </figure>
+        </div>
+      </section>
+      <div class="notice">
+        <div class="container">
+          <span class="notice-label">Meddelande från kansliet</span>
+          <p>
+            Samtliga förhandlingsparter uppmanas att inkomma med sina krav.
+            <span>Eventuell finansiering är ännu inte säkerställd.</span>
+          </p>
+        </div>
+      </div>
+      <section
+        class="container lists-section"
+        id="kravlistor"
+        aria-labelledby="lists-title"
+        tabindex="-1"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Familjens samlade underlag</p>
+            <h2 id="lists-title">Kravlistorna</h2>
+            <p>
+              Välj ditt namn för att lägga till eller ändra önskningar. Läs de
+              andras inför julklappsköpen.
+            </p>
+          </div>
+          <div class="session-label">
+            <span aria-hidden="true">✳</span> Julen 2026
+          </div>
+        </div>
+        <div class="list-toolbar">
+          <div class="person-picker">
+            <label for="person-select">Vems önskelista vill du öppna?</label
+            ><select id="person-select">
+              <option value="">Alla i familjen</option>
+              <option>Linnéa</option>
+              <option>Sebastian</option>
+              <option>Mamma</option>
+              <option>Pappa</option>
+              <option>Elsa</option>
+              <option>Mormor</option>
+              <option>Andreas</option>
+            </select>
+          </div>
+          <button class="button button-outline" id="show-all" hidden>
+            Visa allas listor
+          </button>
+          <p class="totals" id="totals">7 förhandlingsparter</p>
+        </div>
+        <div
+          class="feedback"
+          id="feedback"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></div>
+        <div class="load-state" id="load-state">
+          <p id="load-message" role="status" tabindex="-1">
+            Kansliet hämtar familjens önskelistor…
+          </p>
+          <button class="button button-outline" id="retry" hidden>
+            Försök igen
+          </button>
+        </div>
+        <div class="workspace" id="workspace" hidden>
+          <section
+            class="editor"
+            id="editor"
+            aria-labelledby="form-heading"
+            hidden
+          >
+            <p class="eyebrow">Till julfridsutskottet</p>
+            <h3 id="form-heading">Lägg till en önskning</h3>
+            <p class="editor-intro" id="form-person"></p>
+            <form id="wish-form">
+              <fieldset id="form-fields">
+                <label for="wish-title">Vad önskar du dig?</label
+                ><input
+                  id="wish-title"
+                  name="title"
+                  type="text"
+                  placeholder="Till exempel en varm stickad tröja"
+                  required
+                />
+                <label for="wish-url"
+                  >Länk till julklappen <span>(valfritt)</span></label
+                ><input
+                  id="wish-url"
+                  name="url"
+                  type="url"
+                  inputmode="url"
+                  placeholder="https://…"
+                  aria-describedby="url-help"
+                />
+                <p class="field-help" id="url-help">
+                  En länk hjälper tomten att hitta rätt. Använd https:// eller
+                  http://.
+                </p>
+                <button
+                  class="button button-primary"
+                  id="save-wish"
+                  type="submit"
+                >
+                  Lägg till önskning <span aria-hidden="true">+</span></button
+                ><button
+                  class="button button-outline"
+                  id="cancel-edit"
+                  type="button"
+                  hidden
+                >
+                  Avbryt redigering
+                </button>
+              </fieldset>
+            </form>
+            <p class="editor-note">
+              Ditt krav registreras i förhandlingsunderlaget. Leverans kan inte
+              garanteras.
+            </p>
+          </section>
+          <div class="cards" id="cards"></div>
+        </div>
+        <noscript
+          ><p class="feedback error">
+            Du behöver aktivera JavaScript i webbläsaren för att läsa och ändra
+            önskelistorna.
+          </p></noscript
+        >
+      </section>
+      <section
+        class="how-section"
+        id="sa-funkar-det"
+        aria-labelledby="how-title"
+      >
+        <div class="container">
+          <p class="eyebrow">Arbetsordning för en fridfull jul</p>
+          <h2 id="how-title">Enklare än en regeringsbildning.</h2>
+          <ol class="steps">
+            <li>
+              <span class="step-number" aria-hidden="true">01</span>
+              <div>
+                <h3>Välj ditt namn</h3>
+                <p>Öppna din kravlista bland familjens önskelistor.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-number" aria-hidden="true">02</span>
+              <div>
+                <h3>Lägg fram dina önskningar</h3>
+                <p>Skriv vad du önskar dig. Bifoga gärna en länk.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-number" aria-hidden="true">03</span>
+              <div>
+                <h3>Säkra julfriden</h3>
+                <p>Läs de andras listor och låt förhandlingarna bli paket.</p>
+              </div>
+            </li>
+          </ol>
+          <p class="shared-note">
+            Precis som tidigare är listorna gemensamma: alla med tillgång till
+            sidan kan läsa och ändra dem. Namnvalet är ingen inloggning.
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container footer-inner">
+        <div>
+          <p class="footer-brand">Regeringsbildning.nu</p>
+          <p>Julfriden förutsätter en bred överenskommelse.</p>
+        </div>
+        <p>
+          En önskelisteapp för familjen.<br />Helt inofficiell. Högst angelägen.
+        </p>
+        <a href="#hero-title">Till toppen ↑</a>
+      </div>
+    </footer>
+    <dialog
+      id="delete-modal"
+      aria-labelledby="delete-heading"
+      aria-describedby="delete-description"
+    >
+      <h2 id="delete-heading">Ta bort önskningen?</h2>
+      <p id="delete-description">
+        Vill du ta bort <strong id="delete-title"></strong> från
+        <span id="delete-person"></span>s kravlista? Det går inte att ångra.
+      </p>
+      <p id="delete-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button class="button button-outline" id="delete-cancel" autofocus>
+          Behåll önskningen</button
+        ><button class="button button-danger" id="delete-confirm">
+          Ta bort önskning
+        </button>
+      </div>
+    </dialog>
+  </body>
 </html>

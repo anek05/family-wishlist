@@ -1,0 +1,14 @@
+{
+  "name": "regeringsbildning-nu",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Familjens befintliga önskelisteapp, i ny parlamentarisk julskrud.",
+  "scripts": {
+    "check": "node --check app.js",
+    "test": "node tests/browser.cjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "playwright": "1.58.2"
+  }
+}

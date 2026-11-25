@@ -1,0 +1,12 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "wishlists": {
+      ".read": true,
+      "$person": {
+        ".write": "$person === 'Linnéa' || $person === 'Sebastian' || $person === 'Mamma' || $person === 'Pappa' || $person === 'Elsa' || $person === 'Mormor' || $person === 'Andreas'"
+      }
+    }
+  }
+}
